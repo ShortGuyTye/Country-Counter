@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Country Counter</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <nav>
+        <div class="leftNav" id="dropDownClick">
+            <a id="imgLink" href="index.html"><img src="silouette.png" width="75" height="75"></a>
+            <a href="#categories">Categories</a>
+            <a href="about.html">About</a>
+            <a href="#contact">Contact</a>
+        </div>
+        <div class="rightNav">
+            <a href="#search">&#x1F50E;</a>
+            <a class="dropDown" href="javascript:void(0)" onclick="dropDown()">&#9776;</a>
+        </div>
+    </nav>
+
+    <div class="homeMain">
+        <h1>Country Counter</h1>
+        <h4>Please reach out with any problems or suggestions</h4>
+        <input type="text" placeholder="Search">
+    </div>
+
+    <footer>
+        <div class="row">
+            <div class="col-6 leftFoot">
+                <h4>Contact us</h4>
+                <ul>
+                    <li>mtmcrey@yahoo.com</li>
+                    <li>@ShortGuyTye</li>
+
+                </ul>
+            </div>
+            <div class="col-6 rightFoot">
+                <label>Made by Tye McReynolds</label>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function dropDown() {
+            var dd = document.getElementById("dropDownClick")
+            if (dd.className === "leftNav") {
+                dd.className += " responsive"
+            } else {
+                dd.className = "leftNav"
+            }
+        }
+    </script>
+
+</body>
+
+</html>

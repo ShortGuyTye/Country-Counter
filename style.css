@@ -1,0 +1,236 @@
+body {
+    font-family: "Merriweather";
+    line-height: 1.5;
+    margin: 0;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    background-color: #0d7bba;
+    margin: 0;
+    padding: 0;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.col-1 {width: 8.33%}
+.col-2 {width: 16.66%}
+.col-3 {width: 25%}
+.col-4 {width: 33.33%}
+.col-5 {width: 41.66%}
+.col-6 {width: 50%}
+.col-7 {width: 58.33%}
+.col-8 {width: 66.66%}
+.col-9 {width: 75%}
+.col-10 {width: 83.33%}
+.col-11 {width: 91.66%}
+.col-12 {width: 100%}
+
+/* ############### MAIN ###############*/
+
+/* Nav Bar */
+.leftNav {
+    display: flex;
+}
+
+.rightNav {
+    display: flex;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.leftNav a,
+.rightNav a {
+    color: #779233;
+    text-shadow: -0.5px -0.5px 0 #397338,
+        0.5px -0.5px #397338,
+        -0.5px 0.5px #397338,
+        0.5px 0.5px #397338;
+    text-decoration: none;
+    font-size: 35px;
+    padding: 20px;
+}
+
+.leftNav a:hover,
+.rightNav a:hover {
+    color: white
+}
+
+#imgLink{
+    padding: 0px;
+}
+
+nav img:hover {
+    filter: drop-shadow(1px 0 0 white) drop-shadow(-1px 0 0 white) drop-shadow(0 1px 0 white) drop-shadow(0 -1px 0 white);
+}
+
+.dropDown {
+    display: none
+}
+
+/* Footer */
+
+footer {
+    background-color: #779233;
+    color: white;
+    padding: 20px 2px 2px 20px;
+}
+
+footer h4 {
+    font-size: 20px;
+    margin: 0px;
+}
+
+footer ul {
+    font-size: 12px;
+    line-height: 2;
+    list-style: none;
+    text-align: left;
+    padding: 0px;
+}
+
+.rightFoot {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    font-size: 12px;
+}
+
+/* Home Content */
+
+.homeMain {
+    background-image: linear-gradient(#0f92dd, #75bae2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 200px 0px 400px;
+    text-align: center;
+    color: white;
+    text-shadow: -1px -1px 0 black,
+        1px -1px black,
+        -1px 1px black,
+        1px 1px black;
+}
+
+.homeMain input {
+    width: 400px;
+    height: 25px;
+    border-radius: 8px;
+    min-width: none;
+}
+
+.homeMain h1 {
+    font-size: 70px;
+    margin: 15px;
+}
+
+.homeMain h4 {
+    font-size: 12px;
+}
+
+/* About Content */
+
+.aboutRow0 {
+    background-image: url(about-background.JPG);
+    background-size: cover;
+    padding: 50px 0px 200px;
+}
+
+.aboutRow1, .aboutRow2 {
+    background-color: #7bc8f5;
+}
+
+.aboutRow1 .col-6, .aboutRow2 .col-6 {
+    display: flex;
+    box-sizing: border-box;
+    text-align: center;
+    margin: 100px 0px;
+    padding: 0px 5%;
+}
+
+.aboutRow0 .col-12 {
+    height: 100%;
+    font-size: 50px;
+    text-align: center;
+}
+
+.aboutRow1 img, .aboutRow2 img {
+    box-sizing: border-box;
+    max-height: 400px;
+    max-width: 100%;
+    height: auto;
+    margin:auto;
+    border-radius: 10%;
+}
+
+.aboutRow1 .text {
+    font-size: 20px;
+    padding-left: 25%;
+}
+
+.aboutRow2 .text {
+    font-size: 20px;
+    padding-right: 25%;
+}
+
+.imgHidden {
+    display: none;
+}
+
+/*############### MOBILE ###############*/
+
+@media screen and (max-width: 680px) {
+    .leftNav a {
+        display: none
+    }
+
+    #imgLink {
+        display: block;
+    }
+
+    .dropDown {
+        display: block;
+    }
+
+    .homeMain input {
+        width: 75%;
+    }
+
+    .aboutRow1 .col-6, .aboutRow2 .col-6 {
+        margin: 0px;
+        width: 100%;
+    }
+
+    .aboutRow1 .text, .aboutRow2 .text {
+        margin: 100px;
+        padding: 0px;
+    }
+
+    .aboutRow0 .col-12 {
+        font-size: 35px;
+    }
+
+    .imgShown {
+        display: none;
+    }
+
+    .imgHidden {
+        display: block;
+    }
+
+    .leftNav.responsive {
+        flex-direction: column;
+    }
+
+    .leftNav.responsive a {
+        display: flex;
+    }
+}
