@@ -37,7 +37,7 @@ const getCountryById = async (req, res) => {
     }catch (error) {
         console.error(error);
         res.status(500).json({
-            message: "Internal Server Error"
+            message: IS_ERROR
         })
     }
 };
@@ -117,7 +117,7 @@ const updateCountry = async (req, res) => {
     } catch (error) {
         console.error(error);
         res.status(500).json({
-            message: "Internal Server Error"
+            message: IS_ERROR
         })
     }
 };
@@ -142,16 +142,45 @@ const deleteCountry = async (req, res) => {
     } catch (error) {
         console.error(error);
         res.status(500).json({
-            message: "Internal Server Error"
+            message: IS_ERROR
         })
     }
 };
 
+const getContinents = async (req, res) => {
+    try {
+        const continent = req.params.continent;
+
+        const result = await pool.query(
+            `
+            SELECT *
+            FROM      
+            JOIN continents
+            ON countries.id = continents.id
+            WHERE continents.continent = $1
+            `, [continent]
+        );
+
+        if (result.rows.length === 0) {
+            return res.status(404).json({
+                message: "Continent not found"
+            });
+        } else {
+            res.json(result.rows);
+        }
+    } catch(error) {
+        console.error(error);
+        res.status(500).json({
+            message: IS_ERROR
+        })
+    }
+}
 module.exports = {
     getAllCountries,
     getCountryById,
     getCountryByName,
     createCountry,
     updateCountry,
-    deleteCountry
+    deleteCountry,
+    getContinents
 };
