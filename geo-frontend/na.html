@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>CountryInfo</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="main-container">
+        <nav>
+            <a href="index.html"><img src="images/silouette.png" width="100" height="100" alt="countryinfo logo"></a>
+            <table>
+                <tr>
+                    <td id="africa"><a class="cat" href="africa.html">Africa</a></td>
+                    <td><a class="cat" href="asia.html">Asia</a></td>
+                    <td><a class="cat" href="europe.html">Europe</a></td>
+                    <td><a class="cat" href="oceania.html">Oceania</a></td>
+                    <td><a class="cat" href="na.html">North America</a></td>
+                    <td><a class="cat" href="sa.html">South America</a></td>
+                </tr>
+            </table>
+            <div>
+                <label for="search-box">&#x1F50E;</label>
+            </div>
+        </nav>
+
+        <div class="continent-main">
+            <h1>North America</h1>
+
+            <div class="names-box">
+                <h2>Countries of North America</h2>
+                <div class="country-list">
+                    <ul class="column">
+                        <li class="letter">A</li>
+                        <li>Antigua and Barbuda</li>
+                        <li class="letter">B</li>
+                        <li>Bahamas</li>
+                        <li>Barbados</li>
+                        <li>Belize</li>
+                        <li class="letter">C</li>
+                        <li>Canada</li>
+                        <li>Costa Rica</li>
+                        <li>Cuba</li>
+                        <li class="letter">D</li>
+                        <li>Dominica</li>
+                        <li>Dominican Republic</li>
+                    </ul>
+                    <ul class="column">
+                        <li class="letter">E</li>
+                        <li>El Salvador</li>
+                        <li class="letter">G</li>
+                        <li>Grenada</li>
+                        <li>Guatemala</li>
+                        <li class="letter">H</li>
+                        <li>Haiti</li>
+                        <li>Honduras</li>
+                        <li class="letter">J</li>
+                        <li>Jamaica</li>
+                        <li class="letter">M</li>
+                        <li>Mexico</li>
+                    </ul>
+                    <ul class="column">
+                        <li class="letter">N</li>
+                        <li>Nicaragua</li>
+                        <li class="letter">P</li>
+                        <li>Panama</li>
+                        <li class="letter">S</li>
+                        <li>Saint Kitts and Nevis</li>
+                        <li>Saint Lucia</li>
+                        <li>Saint Vincent and the Grenadines</li>
+                        <li class="letter">T</li>
+                        <li>Trinidad and Tobago</li>
+                        <li class="letter">U</li>
+                        <li>United States of America</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <div class="footer-links">
+                <div class="contact-us">
+                    <h4>Contact us</h4>
+                    <span>mtmcrey@yahoo.com</span>
+                    <span>@ShortGuyTye</span>
+                </div>
+                <div class="about">
+                    <h4><a href="about.html">About</a></h4>
+                    <span>Learn more about us</span>
+                </div>
+            </div>
+            <span></span>
+            <span id="copyright">Made by Tye McReynolds</span>
+        </footer>
+    </div>
+
+    <script>
+        const countries = document.querySelectorAll("svg path");
+        countries.forEach(function (country) {
+            country.addEventListener("mouseenter", function () {
+                country.style.fill = "red";
+            });
+            country.addEventListener("mouseleave", function () {
+                country.style.fill = "rgb(40, 125, 209)";
+            });
+        })
+    </script>
+
+</body>
+
+</html>

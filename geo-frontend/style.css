@@ -4,6 +4,7 @@ html {
     --nav-color: rgb(40, 125, 209);
     --text-color: beige;
     --background-color: rgb(247, 255, 247);
+    --border-color: rgb(21, 77, 133);
 }
 
 body {
@@ -27,6 +28,7 @@ nav {
     justify-content: space-around;
     align-items: center;
     padding: 0 2rem;
+    border-bottom: 0.25rem solid var(--border-color);
 }
 
 nav a {
@@ -74,14 +76,66 @@ input[type="text"] {
     font-size: 2rem;
 }
 
+/* ########### CONTINENTS ############### */
+.continent-main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.continent-main h1 {
+    text-align: center;
+    margin: 2rem 0 4rem 0;
+}
+
+.continent-main h2 {
+    font-size: 2rem;
+    text-align: center;
+    margin-top: 3rem;
+    margin-bottom: 0;
+    background-color: var(--nav-color);
+    color: var(--text-color);
+    padding: 1rem;
+    border: 0.25rem solid var(--border-color);
+}
+
+.names-box {
+    display: grid;
+
+}
+
+.country-list {
+    display: flex;
+    background-color: var(--nav-color);
+    color: var(--text-color);
+    padding: 1rem;
+    margin-bottom: 3rem;
+    border: 0.25rem solid var(--border-color);
+    border-top: 0;
+}
+
+.column {
+    min-width: 326px;
+    font-size: 1.5rem;
+    list-style-type: none;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+.letter {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
 /* ########### FOOTER ############### */
 footer {
     background-color: var(--nav-color);
     color: var(--text-color);
     display: flex;
     justify-content: space-between;
-    align-items:flex-start
-    ;
+    align-items:flex-start;
+    border-top: 0.25rem solid var(--border-color);
 }
 
 footer h4 {
