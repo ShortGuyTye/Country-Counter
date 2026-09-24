@@ -1,52 +1,93 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CountryInfo</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
     <div class="main-container">
-        <nav>
-            <a href="index.html"><img src="images/silouette.png" width="100" height="100" alt="countryinfo logo"></a>
-            <table>
-                <tr>
-                    <td id="africa"><a class="cat" href="africa.html">Africa</a></td>
-                    <td><a class="cat" href="asia.html">Asia</a></td>
-                    <td><a class="cat" href="eruope.html">Europe</a></td>
-                    <td><a class="cat" href="oceania.html">Oceania</a></td>
-                    <td><a class="cat" href="na.html">North America</a></td>
-                    <td><a class="cat" href="sa.html">South America</a></td>
-                </tr>
-            </table>
-            <div>
-                <label for="search-box">&#x1F50E;</label>
-            </div>
-        </nav>
 
-        <div class="main-box">
-            <h1>CountryInfo</h1>
-            <h4>Please reach out with any problems or suggestions</h4>
-            <input id="search-box" type="text" placeholder="Search">
+    <header>
+        <nav>
+            <a href="index.html">
+                <img
+                    class="logo"
+                    src="images/silouette.png"
+                    alt="CountryInfo logo"
+                >
+            </a>
+
+            <ul class="continent-nav">
+                <li>
+                    <a href="africa.html">Africa</a>
+                </li>
+                <li>
+                    <a href="asia.html">Asia</a>
+                </li>
+                <li>
+                    <a href="europe.html">Europe</a>
+                </li>
+                <li>
+                    <a href="oceania.html">Oceania</a>
+                </li>
+                <li>
+                    <a href="na.html">North America</a>
+                </li>
+                <li>
+                    <a href="sa.html">South America</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="main-box">
+        <h1>CountryInfo</h1>
+
+        <p>Please reach out with any problems or suggestions.</p>
+
+        <form class="search-form">
+            <label for="search-box">Search countries</label>
+
+            <div class="search-input">
+                <input
+                    id="search-box"
+                    type="search"
+                    placeholder="Search countries..."
+                >
+
+                <button type="submit">Search</button>
+            </div>
+        </form>
+    </main>
+
+    <footer>
+        <div class="footer-links">
+
+            <div class="contact-us">
+                <h2>Contact Us</h2>
+                <span>mtmcrey@yahoo.com</span>
+                <span>@ShortGuyTye</span>
+            </div>
+
+            <div class="about">
+                <h2>
+                    <a href="about.html">About</a>
+                </h2>
+                <span>Learn more about us</span>
+            </div>
+
         </div>
 
-        <footer>
-            <div class="footer-links">
-                <div class="contact-us">
-                    <h4>Contact us</h4>
-                    <span>mtmcrey@yahoo.com</span>
-                    <span>@ShortGuyTye</span>
-                </div>
-                <div class="about">
-                    <h4><a href="about.html">About</a></h4>
-                    <span>Learn more about us</span>
-                </div>
-            </div>
-            <span></span>
-            <span id="copyright">Made by Tye McReynolds</span>
-        </footer>
-    </div>
+        <p class="copyright">Made by Tye McReynolds</p>
+    </footer>
+
+</div>
+
 </body>
 
 </html>
