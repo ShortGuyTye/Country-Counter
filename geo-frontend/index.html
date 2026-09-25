@@ -12,82 +12,141 @@
 <body>
     <div class="main-container">
 
-    <header>
-        <nav>
-            <a href="index.html">
-                <img
-                    class="logo"
-                    src="images/silouette.png"
-                    alt="CountryInfo logo"
-                >
-            </a>
+        <header>
+            <nav>
+                <a href="index.html">
+                    <img class="logo" src="images/silouette.png" alt="CountryInfo logo" />
+                </a>
+                <button class="hamburger" id="hamburger" aria-label="Open navigation menu">
+                    ☰
+                </button>
+                <ul class="continent-nav" id="continent-nav">
+                    <li><a href="africa.html">Africa</a></li>
+                    <li><a href="asia.html">Asia</a></li>
+                    <li><a href="europe.html">Europe</a></li>
+                    <li><a href="oceania.html">Oceania</a></li>
+                    <li><a href="na.html">North America</a></li>
+                    <li><a href="sa.html">South America</a></li>
+                </ul>
+            </nav>
+        </header>
 
-            <ul class="continent-nav">
-                <li>
-                    <a href="africa.html">Africa</a>
-                </li>
-                <li>
-                    <a href="asia.html">Asia</a>
-                </li>
-                <li>
-                    <a href="europe.html">Europe</a>
-                </li>
-                <li>
-                    <a href="oceania.html">Oceania</a>
-                </li>
-                <li>
-                    <a href="na.html">North America</a>
-                </li>
-                <li>
-                    <a href="sa.html">South America</a>
-                </li>
-            </ul>
-        </nav>
-    </header>
+        <main class="main-box">
+            <h1>CountryInfo</h1>
 
-    <main class="main-box">
-        <h1>CountryInfo</h1>
+            <p>Please reach out with any problems or suggestions.</p>
 
-        <p>Please reach out with any problems or suggestions.</p>
+            <form class="search-form" id="search-form">
+                <label for="search-box">Search countries</label>
 
-        <form class="search-form">
-            <label for="search-box">Search countries</label>
+                <div class="search-input">
+                    <input id="search-box" type="search" placeholder="Search countries..." autocomplete="off">
 
-            <div class="search-input">
-                <input
-                    id="search-box"
-                    type="search"
-                    placeholder="Search countries..."
-                >
+                    <button type="submit">Search</button>
+                </div>
 
-                <button type="submit">Search</button>
-            </div>
-        </form>
-    </main>
+                <div id="search-results" class="search-results"></div>
+            </form>
+        </main>
 
-    <footer>
-        <div class="footer-links">
+        <footer>
+            <div class="footer-links">
 
-            <div class="contact-us">
-                <h2>Contact Us</h2>
-                <span>mtmcrey@yahoo.com</span>
-                <span>@ShortGuyTye</span>
+                <div class="contact-us">
+                    <h2>Contact Us</h2>
+                    <span>mtmcrey@yahoo.com</span>
+                    <span>@ShortGuyTye</span>
+                </div>
+
+                <div class="about">
+                    <h2>
+                        <a href="about.html">About</a>
+                    </h2>
+                    <span>Learn more about us</span>
+                </div>
+
             </div>
 
-            <div class="about">
-                <h2>
-                    <a href="about.html">About</a>
-                </h2>
-                <span>Learn more about us</span>
-            </div>
+            <p class="copyright">Made by Tye McReynolds</p>
+        </footer>
 
-        </div>
-
-        <p class="copyright">Made by Tye McReynolds</p>
-    </footer>
-
-</div>
+    </div>
 
 </body>
+
+<script>
+    const hamburger = document.getElementById("hamburger");
+    const continentNav = document.getElementById("continent-nav");
+
+    hamburger.addEventListener("click", function () {
+        continentNav.classList.toggle("show");
+
+        if (continentNav.classList.contains("show")) {
+            hamburger.textContent = "✕";
+            hamburger.setAttribute("aria-label", "Close navigation menu");
+        } else {
+            hamburger.textContent = "☰";
+            hamburger.setAttribute("aria-label", "Open navigation menu");
+        }
+    });
+
+    const searchForm = document.getElementById("search-form");
+    const searchBox = document.getElementById("search-box");
+    const searchResults = document.getElementById("search-results");
+
+    searchForm.addEventListener("submit", async function (event) {
+        event.preventDefault();
+
+        const search = searchBox.value.trim();
+
+        if (!search) {
+            searchResults.innerHTML = "";
+            return;
+        }
+
+        try {
+            const response = await fetch(
+                `http://localhost:3000/countries/search/${encodeURIComponent(search)}`
+            );
+
+            const countries = await response.json();
+
+            searchResults.innerHTML = "";
+
+            if (countries.length === 0) {
+                searchResults.innerHTML = `
+                <div class="search-result">
+                    No countries found
+                </div>
+            `;
+                return;
+            }
+
+            countries.forEach(country => {
+                const result = document.createElement("a");
+
+                result.classList.add("search-result");
+                result.textContent = country.name;
+
+                result.href = `country.html?country=${country.abbreviation}`;
+
+                searchResults.appendChild(result);
+            });
+
+            searchResults.classList.add("show");
+
+        } catch (error) {
+            console.error(error);
+
+            searchResults.innerHTML = `
+            <div class="search-result">
+                Something went wrong
+            </div>
+        `;
+
+            searchResults.classList.add("show");
+        }
+    });
+</script>
 
 </html>
