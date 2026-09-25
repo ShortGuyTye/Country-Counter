@@ -24,7 +24,7 @@ const getCountryById = async (req, res) => {
         const id = req.params.id
 
         const result = await pool.query(
-            "SELECT * FROM countries WHERE id = $1", [id]
+            "SELECT * FROM countries WHERE abbreviation = $1", [id]
         );
 
         if (result.rows.length === 0) {
