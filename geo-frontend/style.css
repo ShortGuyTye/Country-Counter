@@ -151,13 +151,13 @@ nav {
   transition:
     fill 0.15s,
     filter 0.15s;
-  cursor: pointer;
 }
 
 path:hover,
 path.country-hover {
   fill: var(--accent) !important;
   filter: brightness(1.05);
+  cursor: pointer;
 }
 
 .country-section {
@@ -208,6 +208,7 @@ path.country-hover {
 .column li:not(.letter):hover {
   background: var(--surface-soft);
   color: var(--nav-dark);
+  cursor: pointer;
 }
 
 .letter {
@@ -221,6 +222,129 @@ path.country-hover {
 
 .column .letter:first-child {
   margin-top: 0;
+}
+
+/* COUNTRY PROFILE PAGE STYLES */
+.country-header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.country-header h1 {
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  color: var(--nav-dark);
+  margin: 0.25rem 0 0;
+  text-transform: capitalize;
+}
+
+.stats-grid {
+  width: min(100%, 1000px);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.stat-card {
+  background: var(--surface);
+  border: 1px solid rgba(21, 77, 133, 0.15);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(21, 77, 133, 0.18);
+}
+
+.stat-card.highlight {
+  border-top: 4px solid var(--accent);
+}
+
+.stat-label {
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--nav-color);
+}
+
+.stat-value {
+  margin: 0;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  word-break: break-word;
+}
+
+/* Ensure empty/loading state text displays cleanly */
+.stat-value:empty::before {
+  content: "—";
+  color: #94a3b8;
+}
+
+/* ABOUT PAGE STYLES */
+.about-section {
+  width: min(100%, 1000px);
+  margin-bottom: 3.5rem;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+  align-items: center;
+  background: var(--surface);
+  padding: clamp(1.5rem, 4vw, 3rem);
+  border: 1px solid rgba(21, 77, 133, 0.15);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.about-text h2 {
+  color: var(--nav-dark);
+  font-size: 1.8rem;
+  margin: 0 0 1rem;
+}
+
+.about-text p {
+  color: var(--text-dark);
+  line-height: 1.6;
+  font-size: 1.05rem;
+  margin: 0;
+}
+
+.about-image-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.about-img {
+  max-width: 100%;
+  height: auto;
+  border-radius: calc(var(--radius) - 0.25rem);
+  object-fit: cover;
+}
+
+/* Responsive adjustment for About page */
+@media (max-width: 768px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .about-grid.reverse .about-text {
+    order: 1;
+  }
+
+  .about-grid.reverse .about-image-wrapper {
+    order: 2;
+  }
 }
 
 /* FOOTER */

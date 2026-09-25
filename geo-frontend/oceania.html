@@ -1,35 +1,42 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
 <head>
-    <title>CountryInfo</title>
-    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CountryInfo | Oceania</title>
+    <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
     <div class="main-container">
-        <nav>
-            <a href="index.html"><img src="images/silouette.png" width="100" height="100" alt="countryinfo logo"></a>
-            <table>
-                <tr>
-                    <td id="africa"><a class="cat" href="africa.html">Africa</a></td>
-                    <td><a class="cat" href="asia.html">Asia</a></td>
-                    <td><a class="cat" href="europe.html">Europe</a></td>
-                    <td><a class="cat" href="oceania.html">Oceania</a></td>
-                    <td><a class="cat" href="na.html">North America</a></td>
-                    <td><a class="cat" href="sa.html">South America</a></td>
-                </tr>
-            </table>
-            <div>
-                <label for="search-box">&#x1F50E;</label>
+        <header>
+            <nav>
+                <a href="index.html">
+                    <img class="logo" src="images/silouette.png" alt="CountryInfo logo" />
+                </a>
+                <ul class="continent-nav">
+                    <li><a href="africa.html">Africa</a></li>
+                    <li><a href="asia.html">Asia</a></li>
+                    <li><a href="europe.html">Europe</a></li>
+                    <li class="active"><a href="oceania.html">Oceania</a></li>
+                    <li><a href="na.html">North America</a></li>
+                    <li><a href="sa.html">South America</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main class="continent-main">
+            <div class="page-heading">
+                <h1>Oceania</h1>
+                <p>Explore the countries, geography, and data of Oceania.</p>
             </div>
-        </nav>
-
-        <div class="continent-main">
-            <h1>Oceania</h1>
-
-            <div class="names-box">
-                <h2>Countries of Oceania</h2>
+            <section class="country-section">
+                <div class="section-heading">
+                    <span class="eyebrow">Directory</span>
+                    <h2>Countries of Oceania</h2>
+                    <p>Browse the countries alphabetically.</p>
+                </div>
                 <div class="country-list">
                     <ul class="column">
                         <li class="letter">A</li>
@@ -61,38 +68,26 @@
                         <li>Vanuatu</li>
                     </ul>
                 </div>
-            </div>
-        </div>
+            </section>
+        </main>
 
         <footer>
             <div class="footer-links">
                 <div class="contact-us">
-                    <h4>Contact us</h4>
+                    <h2>Contact Us</h2>
                     <span>mtmcrey@yahoo.com</span>
                     <span>@ShortGuyTye</span>
                 </div>
                 <div class="about">
-                    <h4><a href="about.html">About</a></h4>
+                    <h2><a href="about.html">About</a></h2>
                     <span>Learn more about us</span>
                 </div>
             </div>
-            <span></span>
-            <span id="copyright">Made by Tye McReynolds</span>
+            <p class="copyright">Made by Tye McReynolds</p>
         </footer>
     </div>
 
-    <script>
-        const countries = document.querySelectorAll("svg path");
-        countries.forEach(function (country) {
-            country.addEventListener("mouseenter", function () {
-                country.style.fill = "red";
-            });
-            country.addEventListener("mouseleave", function () {
-                country.style.fill = "rgb(40, 125, 209)";
-            });
-        })
-    </script>
-
+    <script src="continents.js"></script>
 </body>
 
 </html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="title">CountryInfo</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <div class="main-container">
+        <header>
+            <nav>
+                <a href="index.html">
+                    <img class="logo" src="images/silouette.png" alt="CountryInfo logo" />
+                </a>
+                <ul class="continent-nav">
+                    <li><a href="africa.html">Africa</a></li>
+                    <li><a href="asia.html">Asia</a></li>
+                    <li><a href="europe.html">Europe</a></li>
+                    <li><a href="oceania.html">Oceania</a></li>
+                    <li><a href="na.html">North America</a></li>
+                    <li><a href="sa.html">South America</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main class="continent-main">
+            <div class="country-header">
+                <span class="eyebrow">Country Profile</span>
+                <h1 id="country-name">Loading...</h1>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-label">Capital City</span>
+                    <p class="stat-value" id="capital"></p>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-label">Largest City</span>
+                    <p class="stat-value" id="city"></p>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-label">Population</span>
+                    <p class="stat-value" id="population"></p>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-label">Population Density</span>
+                    <p class="stat-value" id="density"></p>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-label">Total Area</span>
+                    <p class="stat-value" id="area"></p>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-label">Birth Rate</span>
+                    <p class="stat-value" id="birth"></p>
+                </div>
+                <div class="stat-card highlight">
+                    <span class="stat-label">GDP</span>
+                    <p class="stat-value" id="gdp"></p>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <div class="footer-links">
+                <div class="contact-us">
+                    <h2>Contact Us</h2>
+                    <span>mtmcrey@yahoo.com</span>
+                    <span>@ShortGuyTye</span>
+                </div>
+                <div class="about">
+                    <h2><a href="about.html">About</a></h2>
+                    <span>Learn more about us</span>
+                </div>
+            </div>
+            <p class="copyright">Made by Tye McReynolds</p>
+        </footer>
+    </div>
+
+    <script src="country.js"></script>
+</body>
+
+</html>
