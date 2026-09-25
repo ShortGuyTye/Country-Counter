@@ -175,6 +175,30 @@ const getContinents = async (req, res) => {
         })
     }
 }
+const searchCountries = async (req, res) => {
+    try {
+        const search = req.params.search;
+
+        const result = await pool.query(
+            `
+            SELECT name, abbreviation
+            FROM countries
+            WHERE name ILIKE $1
+            ORDER BY name
+            LIMIT 10
+            `,
+            [`%${search}%`]
+        );
+
+        res.json(result.rows);
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({
+        message: error.message
+    });
+    }
+}
 module.exports = {
     getAllCountries,
     getCountryById,
@@ -182,5 +206,6 @@ module.exports = {
     createCountry,
     updateCountry,
     deleteCountry,
-    getContinents
+    getContinents,
+    searchCountries
 };

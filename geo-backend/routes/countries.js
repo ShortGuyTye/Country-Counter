@@ -9,7 +9,8 @@ const {
     createCountry,
     updateCountry,
     deleteCountry,
-    getContinents
+    getContinents,
+    searchCountries
 } = require("../controllers/countriesController");
 
 router.get("/", getAllCountries);
@@ -20,5 +21,7 @@ router.get("/continent/:continent", getContinents);
 router.post("/", createCountry);
 router.put("/:id", updateCountry);
 router.delete("/:id", deleteCountry);
+
+router.get("/search/:search", searchCountries);
 
 module.exports = router;
