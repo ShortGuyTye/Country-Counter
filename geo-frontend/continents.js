@@ -16,7 +16,7 @@ const country_name = document.querySelectorAll(".column li");
 country_name.forEach(function (name) {
     name.addEventListener("click", async function () {
         const response = await fetch(
-            `http://localhost:3000/countries/name/${name.textContent}`
+            `/countries/name/${name.textContent}`
         );
 
         const data = await response.json();

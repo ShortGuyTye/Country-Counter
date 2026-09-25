@@ -2,7 +2,7 @@ const params = new URLSearchParams(window.location.search);
 
 const code = params.get("country");
 
-fetch(`http://localhost:3000/countries/${code}`)
+fetch(`/countries/${code}`)
     .then(response => response.json())
     .then(data => {
         document.getElementById("country-name").textContent = data.name;
