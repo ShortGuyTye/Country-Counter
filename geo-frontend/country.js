@@ -15,3 +15,17 @@ fetch(`/countries/${code}`)
         document.getElementById("birth").textContent = "Birth Rate: " + Number(data.birth_rate).toLocaleString() + " births per 1,000 people";
         document.getElementById("gdp").textContent = "GDP: $" + Number(data.gdp).toLocaleString();
     });
+
+// HAMBURGER MENU 
+const hamburger = document.getElementById("hamburger");
+const continentNav = document.getElementById("continent-nav");
+hamburger.addEventListener("click", function () {
+    continentNav.classList.toggle("show");
+    if (continentNav.classList.contains("show")) {
+        hamburger.textContent = "✕";
+        hamburger.setAttribute("aria-label", "Close navigation menu");
+    } else {
+        hamburger.textContent = "☰";
+        hamburger.setAttribute("aria-label", "Open navigation menu");
+    }
+});
