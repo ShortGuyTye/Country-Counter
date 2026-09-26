@@ -193,7 +193,11 @@ const searchCountries = async (req, res) => {
                 END,
                 name ASC
             `,
-            [`%${search}%`]
+            [
+                `%${search}%`,
+                search,
+                `${search}%`
+            ]
         );
 
         res.json(result.rows);
