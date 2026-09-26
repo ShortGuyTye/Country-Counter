@@ -94,13 +94,15 @@
     const searchBox = document.getElementById("search-box");
     const searchResults = document.getElementById("search-results");
 
-    searchForm.addEventListener("submit", async function (event) {
-        event.preventDefault();
+    let currentResults = [];
 
+    searchBox.addEventListener("input", async function () {
         const search = searchBox.value.trim();
 
         if (!search) {
             searchResults.innerHTML = "";
+            searchResults.classList.remove("show");
+            currentResults = [];
             return;
         }
 
@@ -109,16 +111,17 @@
                 `/countries/search/${encodeURIComponent(search)}`
             );
 
+            if (!response.ok) {
+                throw new Error(`HTTP error: ${response.status}`);
+            }
+
             const countries = await response.json();
 
+            currentResults = countries;
             searchResults.innerHTML = "";
 
             if (countries.length === 0) {
-                searchResults.innerHTML = `
-                <div class="search-result">
-                    No countries found
-                </div>
-            `;
+                searchResults.classList.remove("show");
                 return;
             }
 
@@ -127,7 +130,6 @@
 
                 result.classList.add("search-result");
                 result.textContent = country.name;
-
                 result.href = `country.html?country=${country.abbreviation}`;
 
                 searchResults.appendChild(result);
@@ -136,16 +138,23 @@
             searchResults.classList.add("show");
 
         } catch (error) {
-            console.error(error);
-
-            searchResults.innerHTML = `
-            <div class="search-result">
-                Something went wrong
-            </div>
-        `;
-
-            searchResults.classList.add("show");
+            console.error("Search error:", error);
+            currentResults = [];
+            searchResults.classList.remove("show");
         }
+    });
+
+    searchForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        if (currentResults.length === 0) {
+            return;
+        }
+
+        const firstCountry = currentResults[0];
+
+        window.location.href =
+            `country.html?country=${firstCountry.abbreviation}`;
     });
 </script>
 

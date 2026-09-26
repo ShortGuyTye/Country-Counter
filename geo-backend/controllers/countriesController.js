@@ -20,7 +20,7 @@ const getAllCountries = async (req, res) => {
 
 //GETTING COUNTRY WITH ID
 const getCountryById = async (req, res) => {
-    try{
+    try {
         const id = req.params.id
 
         const result = await pool.query(
@@ -34,7 +34,7 @@ const getCountryById = async (req, res) => {
         } else {
             res.json(result.rows[0]);
         }
-    }catch (error) {
+    } catch (error) {
         console.error(error);
         res.status(500).json({
             message: IS_ERROR
@@ -44,10 +44,10 @@ const getCountryById = async (req, res) => {
 
 //GETTING COUNTRY BY NAME
 const getCountryByName = async (req, res) => {
-    try{
+    try {
         const name = req.params.name
 
-        const result = await pool.query (
+        const result = await pool.query(
             "SELECT * FROM countries WHERE name = $1",
             [name]
         );
@@ -59,7 +59,7 @@ const getCountryByName = async (req, res) => {
         } else {
             res.json(result.rows[0]);
         }
-    }catch (error) {
+    } catch (error) {
         console.error(error);
         res.status(500).json({
             message: IS_ERROR
@@ -69,7 +69,7 @@ const getCountryByName = async (req, res) => {
 
 //CREATE A COUNTRY
 const createCountry = async (req, res) => {
-    try{
+    try {
         const { name, capital } = req.body
 
         if (!name) {
@@ -88,7 +88,7 @@ const createCountry = async (req, res) => {
         );
 
         res.status(201).json(result.rows[0]);
-    } catch(error){
+    } catch (error) {
         console.error(error);
         res.status(500).json({
             message: IS_ERROR
@@ -98,7 +98,7 @@ const createCountry = async (req, res) => {
 
 //UPDATE A COUNTRY
 const updateCountry = async (req, res) => {
-    try{
+    try {
         const id = req.params.id
         const { name, capital } = req.body
 
@@ -124,7 +124,7 @@ const updateCountry = async (req, res) => {
 
 //DELETING A COUNTRY
 const deleteCountry = async (req, res) => {
-    try{
+    try {
         const id = req.params.id
 
         const result = await pool.query(
@@ -168,7 +168,7 @@ const getContinents = async (req, res) => {
         } else {
             res.json(result.rows);
         }
-    } catch(error) {
+    } catch (error) {
         console.error(error);
         res.status(500).json({
             message: IS_ERROR
@@ -181,11 +181,17 @@ const searchCountries = async (req, res) => {
 
         const result = await pool.query(
             `
-            SELECT name, abbreviation
+            SELECT *
             FROM countries
             WHERE name ILIKE $1
-            ORDER BY name
-            LIMIT 10
+
+            ORDER BY
+                CASE
+                    WHEN LOWER(name) = LOWER($2) THEN 1
+                    WHEN LOWER(name) LIKE LOWER($3) THEN 2
+                    ELSE 3
+                END,
+                name ASC
             `,
             [`%${search}%`]
         );
@@ -195,8 +201,8 @@ const searchCountries = async (req, res) => {
     } catch (error) {
         console.error(error);
         res.status(500).json({
-        message: error.message
-    });
+            message: error.message
+        });
     }
 }
 module.exports = {
