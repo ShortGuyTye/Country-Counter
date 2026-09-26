@@ -1,3 +1,17 @@
+// HAMBURGER MENU 
+const hamburger = document.getElementById("hamburger");
+const continentNav = document.getElementById("continent-nav");
+hamburger.addEventListener("click", function () {
+    continentNav.classList.toggle("show");
+    if (continentNav.classList.contains("show")) {
+        hamburger.textContent = "✕";
+        hamburger.setAttribute("aria-label", "Close navigation menu");
+    } else {
+        hamburger.textContent = "☰";
+        hamburger.setAttribute("aria-label", "Open navigation menu");
+    }
+});
+
 const countries = document.querySelectorAll("svg path");
 countries.forEach(function (country) {
     country.addEventListener("mouseenter", function () {
