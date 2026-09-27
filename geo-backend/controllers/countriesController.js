@@ -1,8 +1,8 @@
 const pool = require("../db/connection");
 
-const IS_ERROR = "Internal Sever Error";
+const IS_ERROR = "Internal Server Error";
 
-//GETTING ALL COUNTRIES
+// GETTING ALL COUNTRIES
 const getAllCountries = async (req, res) => {
     try {
         const result = await pool.query(
@@ -14,41 +14,42 @@ const getAllCountries = async (req, res) => {
         console.error(error);
         res.status(500).json({
             message: IS_ERROR
-        })
+        });
     }
-}
+};
 
-//GETTING COUNTRY WITH ID
+// GETTING COUNTRY WITH ID
 const getCountryById = async (req, res) => {
     try {
-        const id = req.params.id
+        const id = req.params.id;
 
         const result = await pool.query(
-            "SELECT * FROM countries WHERE abbreviation = $1", [id]
+            "SELECT * FROM countries WHERE abbreviation = $1",
+            [id]
         );
 
         if (result.rows.length === 0) {
             return res.status(404).json({
                 message: "Country not found"
             });
-        } else {
-            res.json(result.rows[0]);
         }
+
+        res.json(result.rows[0]);
     } catch (error) {
         console.error(error);
         res.status(500).json({
             message: IS_ERROR
-        })
+        });
     }
 };
 
-//GETTING COUNTRY BY NAME
+// GETTING COUNTRY BY NAME
 const getCountryByName = async (req, res) => {
     try {
-        const name = req.params.name
+        const name = req.params.name;
 
         const result = await pool.query(
-            "SELECT * FROM countries WHERE name = $1",
+            "SELECT * FROM countries WHERE country_name = $1",
             [name]
         );
 
@@ -56,21 +57,21 @@ const getCountryByName = async (req, res) => {
             return res.status(404).json({
                 message: "Country not found"
             });
-        } else {
-            res.json(result.rows[0]);
         }
+
+        res.json(result.rows[0]);
     } catch (error) {
         console.error(error);
         res.status(500).json({
             message: IS_ERROR
-        })
+        });
     }
 };
 
-//CREATE A COUNTRY
+// CREATE A COUNTRY
 const createCountry = async (req, res) => {
     try {
-        const { name, capital } = req.body
+        const { name, capital } = req.body;
 
         if (!name) {
             return res.status(400).json({
@@ -80,7 +81,7 @@ const createCountry = async (req, res) => {
 
         const result = await pool.query(
             `
-            INSERT INTO countries (name, capital)
+            INSERT INTO countries (country_name, capital)
             VALUES ($1, $2)
             RETURNING *
             `,
@@ -92,48 +93,61 @@ const createCountry = async (req, res) => {
         console.error(error);
         res.status(500).json({
             message: IS_ERROR
-        })
+        });
     }
 };
 
-//UPDATE A COUNTRY
+// UPDATE A COUNTRY
 const updateCountry = async (req, res) => {
     try {
-        const id = req.params.id
-        const { name, capital } = req.body
+        const id = req.params.id;
+        const { name, capital } = req.body;
 
         const result = await pool.query(
             `
             UPDATE countries
-            SET name = $1,
-            CAPITAL = $2
+            SET country_name = $1,
+                capital = $2
             WHERE id = $3
             RETURNING *
             `,
             [name, capital, id]
         );
 
+        if (result.rows.length === 0) {
+            return res.status(404).json({
+                message: "Country not found"
+            });
+        }
+
         res.json(result.rows[0]);
     } catch (error) {
         console.error(error);
         res.status(500).json({
             message: IS_ERROR
-        })
+        });
     }
 };
 
-//DELETING A COUNTRY
+// DELETING A COUNTRY
 const deleteCountry = async (req, res) => {
     try {
-        const id = req.params.id
+        const id = req.params.id;
 
         const result = await pool.query(
             `
             DELETE FROM countries
             WHERE id = $1
             RETURNING *
-            `, [id]
+            `,
+            [id]
         );
+
+        if (result.rows.length === 0) {
+            return res.status(404).json({
+                message: "Country not found"
+            });
+        }
 
         res.json({
             message: "Country deleted",
@@ -143,10 +157,11 @@ const deleteCountry = async (req, res) => {
         console.error(error);
         res.status(500).json({
             message: IS_ERROR
-        })
+        });
     }
 };
 
+// GETTING COUNTRIES BY CONTINENT
 const getContinents = async (req, res) => {
     try {
         const continent = req.params.continent;
@@ -154,27 +169,30 @@ const getContinents = async (req, res) => {
         const result = await pool.query(
             `
             SELECT *
-            FROM      
+            FROM countries
             JOIN continents
             ON countries.id = continents.id
             WHERE continents.continent = $1
-            `, [continent]
+            `,
+            [continent]
         );
 
         if (result.rows.length === 0) {
             return res.status(404).json({
                 message: "Continent not found"
             });
-        } else {
-            res.json(result.rows);
         }
+
+        res.json(result.rows);
     } catch (error) {
         console.error(error);
         res.status(500).json({
             message: IS_ERROR
-        })
+        });
     }
-}
+};
+
+// SEARCHING COUNTRIES
 const searchCountries = async (req, res) => {
     try {
         const search = req.params.search;
@@ -183,15 +201,15 @@ const searchCountries = async (req, res) => {
             `
             SELECT *
             FROM countries
-            WHERE name ILIKE $1
+            WHERE country_name ILIKE $1
 
             ORDER BY
                 CASE
-                    WHEN LOWER(name) = LOWER($2) THEN 1
-                    WHEN LOWER(name) LIKE LOWER($3) THEN 2
+                    WHEN LOWER(country_name) = LOWER($2) THEN 1
+                    WHEN LOWER(country_name) LIKE LOWER($3) THEN 2
                     ELSE 3
                 END,
-                name ASC
+                country_name ASC
             `,
             [
                 `%${search}%`,
@@ -201,14 +219,14 @@ const searchCountries = async (req, res) => {
         );
 
         res.json(result.rows);
-
     } catch (error) {
         console.error(error);
         res.status(500).json({
-            message: error.message
+            message: IS_ERROR
         });
     }
-}
+};
+
 module.exports = {
     getAllCountries,
     getCountryById,
