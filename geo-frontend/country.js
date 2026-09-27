@@ -25,7 +25,7 @@ fetch(`/countries/${code}`)
         document.getElementById("population").textContent = Number(data.population).toLocaleString();
         document.getElementById("title").textContent = "CountryInfo | " + data.country_name;
         document.getElementById("density").innerHTML = Number(data.density).toLocaleString() + " people per square kilometer";
-        document.getElementById("area").innerHTML = Number(data.land_area).toLocaleString() + " km<sup>2</sup>";
+        document.getElementById("area").innerHTML = Number(data.area).toLocaleString() + " km<sup>2</sup>";
         document.getElementById("birth").textContent = + Number(data.birth_rate).toLocaleString() + " births per 1,000 people";
         document.getElementById("gdp").textContent = "$" + Number(data.gdp).toLocaleString();
     });
