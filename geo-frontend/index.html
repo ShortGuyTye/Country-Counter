@@ -130,8 +130,8 @@
                 const result = document.createElement("a");
 
                 result.classList.add("search-result");
-                result.textContent = country.name;
-                result.href = `country.html?country=${country.abbreviation}`;
+                result.textContent = country.country_name;
+                result.href = `country.html?country=${country.iso_code}`;
 
                 searchResults.appendChild(result);
             });
@@ -155,7 +155,7 @@
         const firstCountry = currentResults[0];
 
         window.location.href =
-            `country.html?country=${firstCountry.abbreviation}`;
+            `country.html?country=${firstCountry.iso_code}`;
     });
 </script>
 

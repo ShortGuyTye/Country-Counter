@@ -35,7 +35,7 @@ country_name.forEach(function (name) {
 
         const data = await response.json();
 
-        const code = data.abbreviation;
+        const code = data.iso_code;
 
         window.location.href = `country.html?country=${code}`;
 
